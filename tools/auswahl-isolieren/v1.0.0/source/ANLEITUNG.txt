@@ -1,0 +1,70 @@
+Tom – Auswahl isolieren
+Version 1.0.0 | 15.11.2026 | OpenAI Codex für Tom
+
+INSTALLATION (SketchUp Desktop 2024–2026, Windows / macOS)
+Fenster > Erweiterungsmanager > Erweiterung installieren.
+SU_Auswahl_Isolieren_v1.0.0.rbz wählen. Die RBZ nicht entpacken.
+Die Erweiterung ist nicht signiert. Falls die bestehende Laderichtlinie das
+Laden verhindert, muss die Erweiterung entsprechend freigegeben werden.
+
+BEDIENUNG
+1. Eine oder mehrere Gruppen/Komponenten auswählen.
+2. Rechtsklick > Auswahl isolieren.
+3. Bei Bedarf aus der verbleibenden Auswahl eine kleinere Auswahl bilden
+   und erneut Auswahl isolieren ausführen.
+4. Rechtsklick > Isolation aufheben (auch ohne Auswahl im leeren Bereich).
+
+Die Befehle stehen zusätzlich unter:
+Erweiterungen > Tom – Auswahl isolieren.
+
+EIN TASTENKÜRZEL
+Windows: Fenster > Voreinstellungen > Tastaturkürzel.
+Nach "Isolation umschalten" suchen und ein freies Kürzel vergeben,
+z. B. Strg+Umschalt+I, falls nicht anderweitig belegt.
+Erster Aufruf: Auswahl isolieren. Zweiter Aufruf: Isolation aufheben.
+Für weiteres Eingrenzen den separaten Befehl Auswahl isolieren verwenden.
+macOS: SketchUp > Einstellungen > Tastaturkürzel.
+
+VERHALTEN
+- Vorher versteckte Objekte bleiben beim Aufheben versteckt.
+- Auswahl und Kameraposition werden nicht gezielt verändert.
+- Keine Umgruppierung, keine Material-/Tag-/IFC-Änderung.
+- Beim Isolieren innerhalb einer geöffneten Gruppe/Komponente werden auch
+  die Geschwister ihrer übergeordneten Instanzen ausgeblendet.
+- Ausgeblendete Geometrie/Objekte anzeigen wird vorübergehend deaktiviert;
+  die vorherigen Anzeigeeinstellungen werden anschließend wiederhergestellt.
+- Isolation und Aufheben sind jeweils mit Rückgängig/Wiederholen bedienbar.
+- Wiederherstellungsdaten liegen in einem eigenen Modellattribut, werden
+  mit der SKP gespeichert und beim Aufheben entfernt. Deshalb funktioniert
+  Aufheben auch nach erneutem Öffnen, wenn diese Erweiterung geladen ist.
+- Gelöschte Objekte werden nicht wiederhergestellt. Neue Objekte bleiben
+  erhalten; ihre Sichtbarkeit wird beim Aufheben nicht verändert.
+
+HINWEISE ZUM ARBEITEN
+Die Funktion nimmt normale Sichtbarkeitsänderungen am Modell vor.
+Vor dem Anlegen/Aktualisieren von Szenen mit gespeicherter Sichtbarkeit
+oder einem Export die Isolation aufheben, sofern die gesamte Umgebung
+benötigt wird. Szenenwechsel können die Sichtbarkeit erneut verändern.
+Während einer Isolation manuell vorgenommene Sichtbarkeitsänderungen an
+vom Werkzeug ausgeblendeten Objekten werden beim Aufheben überschrieben.
+Innerhalb mehrfach verwendeter Komponenten gehört die Sichtbarkeit der
+Unterobjekte zur gemeinsamen Definition und betrifft daher alle Instanzen.
+Tags und deren Ordnersichtbarkeit werden nicht eingeschaltet.
+Lose Flächen/Kanten oder gemischte Auswahl werden bewusst abgewiesen:
+Bitte Gruppen/Komponenten auswählen.
+
+PRÜFUNG
+Die Kernlogik wird mit einem Ruby-Testmodell geprüft. Ein echter Lauf in
+SketchUp steht hier nicht zur Verfügung. Bitte zunächst an einer Modellkopie
+testen: zwei Objekte isolieren, weiter eingrenzen, Isolation aufheben;
+vorher versteckte Objekte sowie Rückgängig und Wiederholen kontrollieren.
+
+QUELLEN
+https://ruby.sketchup.com/Sketchup/Model.html
+https://ruby.sketchup.com/Sketchup/Drawingelement.html
+https://ruby.sketchup.com/Sketchup/RenderingOptions.html
+https://ruby.sketchup.com/UI/Command.html
+
+CHANGELOG
+1.0.0: Erstveröffentlichung mit Kontextmenü, Tastaturbefehlen, schrittweiser
+Eingrenzung, Unterstützung geöffneter Kontexte und persistentem Zustand.
