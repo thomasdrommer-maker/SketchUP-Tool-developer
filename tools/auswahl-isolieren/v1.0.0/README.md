@@ -2,7 +2,7 @@
 
 Bereitstellung am 16.11.2026: unverändertes Paket aus dem Auftrag vom 15.11.2026. Keine neue Funktionsentwicklung und keine Produktionsfreigabe.
 
-[RBZ herunterladen](../../../..//downloads/SU_Auswahl_Isolieren_v1.0.0.rbz) (Dateiseite öffnen, dann Download raw file).
+[RBZ herunterladen](../../../downloads/SU_Auswahl_Isolieren_v1.0.0.rbz) (Dateiseite öffnen, dann Download raw file).
 
 SHA-256: `8804986dcaeaf752a32fa26d8d76a854eb65964fa98440210fda4c6d6ff990d7`
 
