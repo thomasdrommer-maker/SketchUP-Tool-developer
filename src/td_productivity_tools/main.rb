@@ -5,6 +5,10 @@ require 'tmpdir'
 require_relative 'cursor_info/settings'
 require_relative 'cursor_info/reader'
 require_relative 'cursor_info/tool'
+require_relative 'selection_highlight/settings'
+require_relative 'selection_highlight/collector'
+require_relative 'selection_highlight/overlay'
+require_relative 'selection_highlight/manager'
 module TD
   module ProductivityTools
     module CursorInfo
@@ -56,9 +60,22 @@ module TD
       options.tooltip = 'Angezeigte Objektinformationen auswählen'
       menu.add_item(command)
       menu.add_item(options)
+      highlight = UI::Command.new('Auswahl hervorheben') { SelectionHighlight.toggle }
+      highlight.tooltip = 'Auswahl hervorheben ein/aus'
+      highlight.status_bar_text = 'Ausgewählte Objekte mit transparenter Fläche und kräftigen Kanten hervorheben (nur Anzeige).'
+      highlight.small_icon = highlight.large_icon = File.join(__dir__, 'selection_highlight', 'highlight.png')
+      highlight.set_validation_proc { SelectionHighlight.enabled? ? MF_CHECKED : MF_UNCHECKED }
+      highlight_options = UI::Command.new('Auswahl hervorheben – Optionen') { SelectionHighlight.options }
+      highlight_options.tooltip = 'Farben, Deckkraft und Randstärke der Hervorhebung einstellen'
+      menu.add_separator
+      menu.add_item(highlight)
+      menu.add_item(highlight_options)
       @toolbar = UI::Toolbar.new('TD Produktivitätswerkzeuge')
       @toolbar.add_item(command)
+      @toolbar.add_item(highlight)
       @toolbar.restore
+      Sketchup.add_observer(SelectionHighlight::AppObserver.new)
+      SelectionHighlight.register(Sketchup.active_model) if Sketchup.active_model
       file_loaded(__FILE__)
     end
   end
