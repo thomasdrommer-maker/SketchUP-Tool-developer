@@ -1,0 +1,30 @@
+SketchUp – Ruby-Befehle für die Auswahlfarbe
+Stand: 16.11.2026 | Version 1.0.0
+Erstellt von OpenAI Codex im Auftrag von Tom
+
+DIREKT ANWENDEN
+Ruby-Konsole in SketchUp öffnen.
+Genau eine der folgenden Befehlszeilen kopieren, einfügen und Enter drücken.
+
+MAGENTA:
+Sketchup.active_model.rendering_options["HighlightColor"] = Sketchup::Color.new(255, 0, 255)
+
+ORANGE:
+Sketchup.active_model.rendering_options["HighlightColor"] = Sketchup::Color.new(255, 128, 0)
+
+ALTERNATIV: HERUNTERGELADENE .RB-DATEI LADEN
+DEIN_NAME und gegebenenfalls den gesamten Pfad durch den eigenen Speicherort ersetzen.
+Im Pfad Schrägstriche / verwenden.
+
+Magenta:
+load "C:/Users/DEIN_NAME/Downloads/Auswahlfarbe_Magenta.rb"
+
+Orange:
+load "C:/Users/DEIN_NAME/Downloads/Auswahlfarbe_Orange.rb"
+
+DAUERHAFT ÜBERNEHMEN
+Den aktuellen Stil im Fenster „Stile“ aktualisieren und das Modell speichern.
+Für neue Modelle die Einstellung zusätzlich in der Modellvorlage speichern.
+
+Die zuletzt gesetzte Farbe gilt für die native Auswahl des aktiven Modells.
+Ein Praxistest direkt in SketchUp steht noch aus.
