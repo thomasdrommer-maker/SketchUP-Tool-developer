@@ -1,5 +1,9 @@
 # Changelog
 
+## Plugin 0.3.3.dev01 – 18.11.2026
+
+- Fix: Start-Fehler (SyntaxError in selection_highlight/settings.rb) durch Sketchup.read_default. Einstellungen liegen jetzt als JSON unter %APPDATA%\TD_ProductivityTools. Gespeicherte Optionen werden dadurch einmalig auf Standard zurückgesetzt.
+
 ## Plugin 0.3.2.dev01 – 18.11.2026
 
 - Objektinfo: Attributscanner und Anzeige lesen jetzt verschachtelte Dictionaries (IFC-PropertySets wie `BASF_General` unter `IFC 4/...`). Pfade werden als `A/B/C` geführt. Nur lesend. Praxistest in SketchUp offen.

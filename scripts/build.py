@@ -4,7 +4,7 @@ from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 import hashlib
 ROOT = Path(__file__).resolve().parents[1]
 files = sorted(p for p in (ROOT / 'src').rglob('*') if p.is_file())
-output = ROOT / 'downloads' / 'SU_Productivity_Tools_v0.3.2_dev01.rbz'
+output = ROOT / 'downloads' / 'SU_Productivity_Tools_v0.3.3_dev01.rbz'
 output.parent.mkdir(exist_ok=True)
 with ZipFile(output, 'w', compression=ZIP_DEFLATED) as archive:
     for source in files:

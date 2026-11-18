@@ -1,10 +1,12 @@
 # encoding: UTF-8
 require 'json'
+require_relative '../prefs_store'
 module TD
   module ProductivityTools
     module CursorInfo
-      VERSION = '0.3.2.dev01'.freeze
+      VERSION = '0.3.3.dev01'.freeze
       PREFS = 'TD.ProductivityTools.CursorInfo'.freeze
+      PREFS_FILE = 'CursorInfo'.freeze
       FIELDS = {
         'type' => 'Objekttyp', 'name' => 'Instanzname', 'definition' => 'Definitionsname',
         'description' => 'Komponentenbeschreibung', 'tag' => 'Tag', 'material' => 'Material (Zuweisung)',
@@ -34,14 +36,14 @@ module TD
             'position' => data['position'] == 'corner' ? 'corner' : 'cursor' }
         end
         def self.load
-          normalize(JSON.parse(Sketchup.read_default(PREFS, 'options', JSON.generate(DEFAULTS))))
-        rescue JSON::ParserError, ArgumentError, TypeError => error
+          normalize((PrefsStore.read(PREFS_FILE) || DEFAULTS))
+        rescue JSON::ParserError, ArgumentError, TypeError, SystemCallError, ScriptError => error
           CursorInfo.log(error)
           normalize(DEFAULTS)
         end
         def self.save(data)
           options = normalize(data)
-          Sketchup.write_default(PREFS, 'options', JSON.generate(options))
+          PrefsStore.write(PREFS_FILE, options)
           options
         end
       end
