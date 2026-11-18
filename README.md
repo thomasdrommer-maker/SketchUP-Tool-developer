@@ -1,28 +1,26 @@
 # SketchUP-Tool-developer
 
-Professionelle SketchUp-Desktop-Werkzeuge für effizienteres Modellieren, klarere Auswahl und bessere Orientierung in großen Modellen.
+Professionelle SketchUp-Desktop-Werkzeuge für effizienteres Modellieren und bessere Orientierung in großen Modellen. Auftraggeber: Tom.
 
-Auftraggeber: Tom · Projektstart: 15.11.2026
+## Objektinfo am Cursor – erster Entwicklungsbuild
 
-## Einstieg
+Auf dem Feature-Branch implementiert: konfigurierbare Infobox beim Überfahren von Gruppen, Komponenten, Flächen und Kanten. Eigener aktiver Prüfmodus mit Toolbar, deutschen Optionen und dauerhaft gespeicherter Feldauswahl.
 
-- [Agentenauftrag](AGENTS.md): verbindliche Arbeitsregeln für Entwicklungsagenten.
-- [Entwicklungsauftrag v1.0.0](docs/ENTWICKLUNGSAUFTRAG.md): Produktziele, Architektur, Qualität, GitHub-Ablauf und Abnahme.
-- [Roadmap](docs/ROADMAP.md): priorisierte Werkzeugkandidaten.
-- [Vorlage Werkzeugauftrag](docs/VORLAGE_WERKZEUGAUFTRAG.md): ausfüllbare Spezifikation einer Funktion.
-- [Vorlage Praxistest](docs/VORLAGE_PRAXISTEST.md): Test- und Abnahmenachweis.
-- [Changelog](CHANGELOG.md): nachvollziehbare Änderungen.
+- [RBZ herunterladen](downloads/SU_Productivity_Tools_v0.1.0_dev01.rbz) – Datei öffnen und „Download raw file“ wählen.
+- [Bedienung, Umfang und Grenzen](docs/OBJEKTINFO.md)
+- [Prüfprotokoll und Praxistest](docs/acceptance/OBJEKTINFO_dev01.md)
+- [Prüfsumme](downloads/SU_Productivity_Tools_v0.1.0_dev01.rbz.sha256)
 
-## Aktueller Stand
+**Status: Entwicklungsbuild 0.1.0.dev01; SketchUp-Praxistest offen.** Ziel: SketchUp 2026 unter Windows 11. Keine nachgewiesene SketchUp-Laufzeitkompatibilität in dieser Umgebung. IFC/BASF-Felder sind noch nicht enthalten.
 
-Dieses Repository enthält zunächst den versionierten Agenten- und Entwicklungsauftrag. Es enthält noch keine implementierte Extension, keinen RBZ-Build und keine nachgewiesene SketchUp-Kompatibilität.
+Installation über SketchUp Erweiterungsmanager; anschließend Erweiterungen → TD Produktivitätswerkzeuge → Objektinfo am Cursor. ESC beendet, TAB öffnet Optionen. Lokales Git oder eine Entwicklungsumgebung ist zum Installieren nicht erforderlich.
 
-Primäres Entwicklungs- und Prüfziel ist SketchUp Desktop 2026 unter Windows 11. SketchUp 2025 ist als weiteres Prüfziel vorgesehen; andere Systeme werden erst nach gezielter Prüfung freigegeben.
+## Entwicklung
 
-## Vorgesehener erster Auftrag
+- [Agentenauftrag](AGENTS.md)
+- [Entwicklungskonzept](docs/ENTWICKLUNGSAUFTRAG.md)
+- [Roadmap](docs/ROADMAP.md) – weitere Kandidaten sind noch nicht umgesetzt.
+- [Changelog](CHANGELOG.md)
+- Quellcode: `src/`; reproduzierbarer Paketbau: `python scripts/build.py`.
 
-Ein minimaler Extension-Rahmen plus das Werkzeug „Auswahl isolieren / wiederherstellen“. Vorhandene Vorversionen zuerst prüfen. Der konkrete Einzelauftrag wird anhand der Vorlage festgelegt.
-
-## Startauftrag für einen Entwicklungsagenten
-
-> Lies AGENTS.md, docs/ENTWICKLUNGSAUFTRAG.md und docs/ROADMAP.md. Prüfe den aktuellen Repository-Stand. Bearbeite den konkret beauftragten Werkzeugumfang nach diesen Vorgaben. Formuliere prüfbare Abnahmekriterien, implementiere auf einem eigenen Branch und liefere einen Pull Request sowie bei Funktionsentwicklung eine installierbare versionierte RBZ. Weise automatische Prüfungen und tatsächliche SketchUp-Praxistests getrennt aus. Arbeite die Roadmap nicht ohne Einzelauftrag vollständig ab.
+Der neue gemeinsame Rahmen enthält ausschließlich Objektinfo. Frühere eigenständige Isolier-/Auswahlfarbenwerkzeuge aus anderen Branches werden damit nicht ersetzt oder verändert.
