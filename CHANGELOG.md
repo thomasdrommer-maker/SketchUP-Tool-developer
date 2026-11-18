@@ -1,6 +1,13 @@
 # Changelog
 
-Dokumentstände und spätere Plugin-Releases werden getrennt ausgewiesen.
+## Plugin 0.1.0.dev01 – 18.11.2026
+
+- Minimaler gemeinsamer Extension-Rahmen mit Menü und Toolbar.
+- Objektinfo am Cursor mit verzögertem Picking und eigener Infobox.
+- Einzeln schaltbare Elementinformationen, Zielhierarchie, Schriftgröße, Position und gespeicherte Optionen.
+- Kontextbezogene Größen bei skalierten und gespiegelten Vorfahren; keine Modelländerung.
+- Reproduzierbarer RBZ-Bau, Prüfsumme und Praxistest-Anleitung.
+- Entwicklungsbuild; SketchUp-Laufzeit, DPI und Leistung noch offen. IFC/BASF-Felder folgen separat.
 
 ## Dokumentation 1.0.0 – 15.11.2026
 
@@ -9,5 +16,3 @@ Dokumentstände und spätere Plugin-Releases werden getrennt ausgewiesen.
 - Vorgeschlagene Roadmap für Auswahl-, Sichtbarkeits-, Referenz- und Modellierwerkzeuge.
 - Vorlagen für Werkzeugaufträge und Praxistests.
 - README mit Einstieg und Startauftrag für Entwicklungsagenten.
-
-Noch kein Plugin-Release und keine Implementierung in diesem Stand.
