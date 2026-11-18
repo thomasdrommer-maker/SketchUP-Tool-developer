@@ -30,7 +30,7 @@ module TD
           @dialog.bring_to_front
           return
         end
-        @dialog = UI::HtmlDialog.new(dialog_title: 'Objektinfo – Optionen', preferences_key: PREFS + '.dialog',
+        @dialog = UI::HtmlDialog.new(dialog_title: "Objektinfo – Optionen (v#{VERSION})", preferences_key: PREFS + '.dialog',
                                      scrollable: true, resizable: true, width: 500, height: 680,
                                      style: UI::HtmlDialog::STYLE_DIALOG)
         @dialog.set_file(File.join(__dir__, 'cursor_info', 'options.html'))

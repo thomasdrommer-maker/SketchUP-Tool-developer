@@ -1,5 +1,9 @@
 # Changelog
 
+## Plugin 0.3.1.dev01 – 18.11.2026
+
+- Infobox und Optionsdialog zeigen die Plugin-Version.
+
 ## Plugin 0.3.0.dev01 – 18.11.2026
 
 - Objektinfo: neues Feld IFC-Klasse und frei wählbare Attribute aus BASF_General und IFC-Wörterbüchern (Schlüssel werden aus dem Modell gelesen).

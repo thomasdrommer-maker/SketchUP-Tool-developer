@@ -29,7 +29,7 @@ Optionen werden in SketchUp-Benutzervorgaben gespeichert. Deinstallation über E
 
 Es ist ein eigenes aktives Prüfwerkzeug. Kein Hover während beliebiger anderer Werkzeuge. Mittlere Maustaste/Orbit kann das Werkzeug vorübergehend unterbrechen; nach Rückkehr wird die Anzeige neu aufgebaut. Keine Auswahländerung per Klick in dieser Version.
 
-Diese erste Stufe bildet die oben aufgelisteten Elementinformationen ab. Erweiterte Komponentenattribute wie Preis, URL, Eigentümer oder Status sowie IFC- und BASF_General-Felder siehe Abschnitt unten (ab 0.3.0.dev01).
+Diese erste Stufe bildet die oben aufgelisteten Elementinformationen ab. Erweiterte Komponentenattribute wie Preis, URL, Eigentümer oder Status sowie IFC- und BASF_General-Felder siehe Abschnitt unten (ab 0.3.0.dev01). Die installierte Version steht in der Titelzeile der Infobox und im Optionsdialog.
 
 ## Integrität und Leistung
 

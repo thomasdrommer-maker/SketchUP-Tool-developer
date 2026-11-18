@@ -90,7 +90,7 @@ module TD
             clean = value.nil? ? 'Nicht angegeben / nicht zutreffend' : value.to_s.gsub(/[\r\n\t]+/, ' ')
             "#{label}: #{clean.length > 78 ? clean[0, 75] + '…' : clean}"
           end
-          ['OBJEKTINFO'] + (rows.empty? ? ['Keine sichtbaren Angaben – Optionen prüfen.'] : rows)
+          ["OBJEKTINFO v#{VERSION}"] + (rows.empty? ? ['Keine sichtbaren Angaben – Optionen prüfen.'] : rows)
         end
       end
     end
