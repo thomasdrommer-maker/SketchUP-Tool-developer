@@ -8,11 +8,13 @@ Stand: 18.11.2026. Entwicklungsbuild, keine Produktionsfreigabe.
 - RBZ-Struktur, ZIP-CRC und bytegleiche Quellen durch `scripts/build.py` geprüft.
 - Quellprüfung: keine Modellschreib-API, keine Modelländerung in Overlay-/Observer-Callbacks.
 
-## SketchUp-Praxistest – alle Schritte offen
+## SketchUp-Praxistest
+
+Am 18.11.2026 vom Auftraggeber in SketchUp 2026 (Version 26.2.243, 64 Bit, Windows) durchgeführt: Schritte 1–11 ohne Beanstandung („ok“). Es liegen keine Messwerte, Hardware- oder Modellangaben zur Leistung (Schritt 11) vor; die Bewertung beruht auf der Angabe des Auftraggebers. SketchUp 2025 und macOS bleiben ungeprüft.
 
 | Umgebung | Stand |
 |---|---|
-| SketchUp 2026 / Windows 11 | Offen |
+| SketchUp 2026 (26.2.243) / Windows | Schritte 1–11 ok (Angabe des Auftraggebers) |
 | SketchUp 2025 | Offen; nicht freigegeben |
 
 1. Installieren, Neustart: Menü, Toolbar mit zwei Buttons, Overlay „TD Auswahl hervorheben“ im Overlays-Fenster, keine Ruby-Fehler.
