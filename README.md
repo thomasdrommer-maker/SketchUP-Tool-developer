@@ -2,6 +2,14 @@
 
 Professionelle SketchUp-Desktop-Werkzeuge für effizienteres Modellieren und bessere Orientierung in großen Modellen. Auftraggeber: Tom.
 
+## Auswahl hervorheben – Entwicklungsbuild 0.2.0.dev01
+
+Auf dem Branch `feature/selection-highlight-dev01`: ausgewählte Objekte werden mit halbtransparenter Fläche und kräftigen Kanten hervorgehoben (SketchUp-Overlay, nur Anzeige).
+
+- [RBZ herunterladen](downloads/SU_Productivity_Tools_v0.2.0_dev01.rbz) · [Prüfsumme](downloads/SU_Productivity_Tools_v0.2.0_dev01.rbz.sha256)
+- [Bedienung und Grenzen](docs/AUSWAHL_HERVORHEBEN.md) · [Praxistest](docs/acceptance/AUSWAHL_HERVORHEBEN_dev02.md)
+- **Status: SketchUp-Praxistest offen.** Enthält zusätzlich die Objektinfo (siehe unten).
+
 ## Objektinfo am Cursor – erster Entwicklungsbuild
 
 Auf dem Feature-Branch implementiert: konfigurierbare Infobox beim Überfahren von Gruppen, Komponenten, Flächen und Kanten. Eigener aktiver Prüfmodus mit Toolbar, deutschen Optionen und dauerhaft gespeicherter Feldauswahl.

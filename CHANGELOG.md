@@ -1,5 +1,11 @@
 # Changelog
 
+## Plugin 0.2.0.dev01 – 18.11.2026
+
+- Neu: Auswahl hervorheben als `Sketchup::Overlay` mit transparenter Flächenfüllung und kräftigen Kanten; nur Anzeige, keine Modelländerung.
+- Ein/Aus per Menü, Toolbar und Overlays-Fenster; Farben, Deckkraft und Randstärke einstellbar.
+- Entwicklungsbuild; SketchUp-Laufzeit und Leistung offen.
+
 ## Plugin 0.1.0.dev01 – 18.11.2026
 
 - Minimaler gemeinsamer Extension-Rahmen mit Menü und Toolbar.
