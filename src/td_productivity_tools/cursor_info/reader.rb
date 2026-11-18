@@ -45,9 +45,37 @@ module TD
             when 'hidden' then entity.hidden? ? 'Ja' : 'Nein' if entity.respond_to?(:hidden?)
             when 'casts_shadows' then entity.casts_shadows? ? 'Ja' : 'Nein' if entity.respond_to?(:casts_shadows?)
             when 'receives_shadows' then entity.receives_shadows? ? 'Ja' : 'Nein' if entity.respond_to?(:receives_shadows?)
+            when 'ifc_class' then ifc_class(entity)
             end
           end
           result
+        end
+        def self.definition_of(entity)
+          entity.definition if instance?(entity)
+        end
+        # Rein lesend: attribute_dictionary ohne Anlegen-Flag; Instanz hat Vorrang vor Definition.
+        def self.attribute(entity, dictionary, key)
+          value = entity.get_attribute(dictionary, key) if entity.respond_to?(:get_attribute)
+          return value unless value.nil?
+          definition = definition_of(entity)
+          definition&.get_attribute(dictionary, key)
+        end
+        def self.ifc_class(entity)
+          [entity, definition_of(entity)].compact.each do |source|
+            types = source.attribute_dictionary('AppliedSchemaTypes')
+            next unless types
+            text = types.map { |schema, type| "#{schema}: #{type}" }.join('; ')
+            return text unless text.empty?
+          end
+          nil
+        end
+        def self.attribute_rows(entity, options)
+          options['attributes'].filter_map do |dictionary, key|
+            value = attribute(entity, dictionary, key)
+            empty = value.nil? || value.to_s.strip.empty?
+            next if empty && options['hide_empty']
+            [dictionary == 'BASF_General' ? key : "#{dictionary}: #{key}", empty ? nil : value]
+          end
         end
         def self.lines(path, index, options)
           entity = path[index]
@@ -57,6 +85,10 @@ module TD
             next if empty && options['hide_empty']
             clean = empty ? 'Nicht angegeben / nicht zutreffend' : value.to_s.gsub(/[\r\n\t]+/, ' ')
             "#{FIELDS[key]}: #{clean.length > 78 ? clean[0, 75] + '…' : clean}"
+          end
+          rows += attribute_rows(entity, options).map do |label, value|
+            clean = value.nil? ? 'Nicht angegeben / nicht zutreffend' : value.to_s.gsub(/[\r\n\t]+/, ' ')
+            "#{label}: #{clean.length > 78 ? clean[0, 75] + '…' : clean}"
           end
           ['OBJEKTINFO'] + (rows.empty? ? ['Keine sichtbaren Angaben – Optionen prüfen.'] : rows)
         end

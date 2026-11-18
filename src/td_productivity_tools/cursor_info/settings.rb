@@ -3,21 +3,30 @@ require 'json'
 module TD
   module ProductivityTools
     module CursorInfo
-      VERSION = '0.2.0.dev01'.freeze
+      VERSION = '0.3.0.dev01'.freeze
       PREFS = 'TD.ProductivityTools.CursorInfo'.freeze
       FIELDS = {
         'type' => 'Objekttyp', 'name' => 'Instanzname', 'definition' => 'Definitionsname',
         'description' => 'Komponentenbeschreibung', 'tag' => 'Tag', 'material' => 'Material (Zuweisung)',
         'back_material' => 'Rückseitenmaterial', 'volume' => 'Volumen', 'area' => 'Fläche',
         'length' => 'Länge', 'locked' => 'Gesperrt', 'hidden' => 'Ausgeblendet (Objekt)',
-        'casts_shadows' => 'Schatten werfen', 'receives_shadows' => 'Schatten empfangen'
+        'casts_shadows' => 'Schatten werfen', 'receives_shadows' => 'Schatten empfangen',
+        'ifc_class' => 'IFC-Klasse'
       }.freeze
       DEFAULTS = { 'fields' => %w[type name definition tag material volume], 'delay' => 400,
-                   'font' => 13, 'hide_empty' => true, 'target' => 'part', 'position' => 'cursor' }.freeze
+                   'font' => 13, 'hide_empty' => true, 'target' => 'part', 'position' => 'cursor',
+                   'attributes' => [] }.freeze
       module Settings
+        def self.attributes(raw)
+          Array(raw).filter_map do |pair|
+            next unless pair.is_a?(Array) && pair.length == 2 && pair.all? { |part| part.is_a?(String) && !part.empty? }
+            [pair[0][0, 100], pair[1][0, 100]]
+          end.uniq.first(60)
+        end
         def self.normalize(data)
           raise ArgumentError, 'Ungültige Optionen' unless data.is_a?(Hash)
           { 'fields' => Array(data.fetch('fields', DEFAULTS['fields'])).select { |key| FIELDS.key?(key) }.uniq,
+            'attributes' => attributes(data['attributes']),
             'delay' => [[Integer(data.fetch('delay', 400)), 0].max, 2000].min,
             'font' => [[Integer(data.fetch('font', 13)), 10].max, 24].min,
             'hide_empty' => data.fetch('hide_empty', true) == true,

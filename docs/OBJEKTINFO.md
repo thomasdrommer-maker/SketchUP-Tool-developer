@@ -29,7 +29,7 @@ Optionen werden in SketchUp-Benutzervorgaben gespeichert. Deinstallation über E
 
 Es ist ein eigenes aktives Prüfwerkzeug. Kein Hover während beliebiger anderer Werkzeuge. Mittlere Maustaste/Orbit kann das Werkzeug vorübergehend unterbrechen; nach Rückkehr wird die Anzeige neu aufgebaut. Keine Auswahländerung per Klick in dieser Version.
 
-Diese erste Stufe bildet die oben aufgelisteten Elementinformationen ab. Erweiterte Komponentenattribute wie Preis, URL, Eigentümer oder Status sowie IFC- und BASF_General-Felder sind spätere Ausbaustufen und noch nicht enthalten.
+Diese erste Stufe bildet die oben aufgelisteten Elementinformationen ab. Erweiterte Komponentenattribute wie Preis, URL, Eigentümer oder Status sowie IFC- und BASF_General-Felder siehe Abschnitt unten (ab 0.3.0.dev01).
 
 ## Integrität und Leistung
 
@@ -55,3 +55,10 @@ API am 18.11.2026 anhand der offiziellen Dokumentation geprüft:
 - https://ruby.sketchup.com/UI/HtmlDialog.html – lokaler Optionsdialog.
 
 Prüfprotokoll und Abnahmeschritte: `docs/acceptance/OBJEKTINFO_dev01.md`.
+
+## BASF- und IFC-Attribute (ab 0.3.0.dev01)
+
+- **IFC-Klasse** (Feld in der Liste): liest das SketchUp-Klassifizierungswörterbuch `AppliedSchemaTypes` (Instanz, sonst Definition), z. B. `IFC 4: IfcWall`. Nur Lesen.
+- **BASF- und IFC-Attribute**: Im Optionsdialog werden die im Modell vorhandenen Schlüssel aus `BASF_General` und aus Wörterbüchern mit Namen `IFC…` zur Auswahl angeboten. Die Suche läuft nur beim Öffnen der Optionen (Obergrenze 50 000 Instanzen, dann Hinweis). Bei der Anzeige hat die Instanz Vorrang vor der Definition.
+- Es werden keine Dictionaries, Attribute oder Klassifizierungen angelegt oder geändert. Ausgewählte Schlüssel, die im Modell fehlen, bleiben gespeichert und erscheinen nur, wenn leere Angaben eingeblendet werden.
+- Annahme, noch zu prüfen: Name und Aufbau von `AppliedSchemaTypes` und der IFC-Wörterbücher stammen aus dem Verhalten der SketchUp-Klassifizierung, nicht aus einer offiziellen API-Referenz. Praxistest mit Ihrem IFC-Manager-Modell nötig.

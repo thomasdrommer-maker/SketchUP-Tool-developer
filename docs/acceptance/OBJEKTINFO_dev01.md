@@ -31,3 +31,11 @@ Stand: 18.11.2026. Entwicklungsbuild, keine Produktionsfreigabe.
 11. Leistungsstufen aus `docs/OBJEKTINFO.md` messen und Hardware, Modellgröße, Verschachtelung, Median und Maximum dokumentieren.
 
 Undo/Redo als eigene Schreibfunktion und IFC-Exportausschluss sind nicht zutreffend: Werkzeug schreibt keine Modelldaten und exportiert nicht. In einem produktiven Modell erst nach den obigen Tests einsetzen.
+
+## Nachtrag 0.3.0.dev01 – IFC-/BASF-Attribute (SketchUp-Test offen)
+
+1. Optionen öffnen: Abschnitt „BASF- und IFC-Attribute“ listet vorhandene Schlüssel; leeres Modell zeigt den Hinweis.
+2. Bauteil mit IFC-Klassifizierung: Feld „IFC-Klasse“ stimmt mit SketchUps Klassifizierungsfenster überein.
+3. Bauteil mit BASF_General: gewählte Schlüssel erscheinen mit korrektem Wert; Instanz- und Definitionsebene prüfen.
+4. Vorher/nachher: keine neuen oder geänderten Dictionaries, Attribute, Klassifizierungen (Ruby-Konsole vergleichen), Speicherstatus unverändert.
+5. Schlüssel auswählen, SketchUp neu starten: Auswahl bleibt; großes Modell: Dauer beim Öffnen der Optionen notieren.

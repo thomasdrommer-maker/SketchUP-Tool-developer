@@ -4,6 +4,7 @@ require 'json'
 require 'tmpdir'
 require_relative 'cursor_info/settings'
 require_relative 'cursor_info/reader'
+require_relative 'cursor_info/attribute_scanner'
 require_relative 'cursor_info/tool'
 require_relative 'selection_highlight/settings'
 require_relative 'selection_highlight/collector'
@@ -34,7 +35,10 @@ module TD
                                      style: UI::HtmlDialog::STYLE_DIALOG)
         @dialog.set_file(File.join(__dir__, 'cursor_info', 'options.html'))
         @dialog.add_action_callback('ready') do
-          @dialog.execute_script("render(#{JSON.generate({fields: FIELDS, options: Settings.load})})")
+          options = Settings.load
+          scan = AttributeScanner.scan(Sketchup.active_model)
+          attributes = (scan.keys + options['attributes']).uniq
+          @dialog.execute_script("render(#{JSON.generate({fields: FIELDS, options: options, attributes: attributes, truncated: scan.truncated})})")
         end
         @dialog.add_action_callback('save') do |_ctx, json|
           begin

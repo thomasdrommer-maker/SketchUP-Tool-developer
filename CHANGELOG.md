@@ -1,5 +1,11 @@
 # Changelog
 
+## Plugin 0.3.0.dev01 – 18.11.2026
+
+- Objektinfo: neues Feld IFC-Klasse und frei wählbare Attribute aus BASF_General und IFC-Wörterbüchern (Schlüssel werden aus dem Modell gelesen).
+- Nur lesend: es werden keine Dictionaries angelegt oder geändert.
+- Entwicklungsbuild; SketchUp-Praxistest offen.
+
 ## Plugin 0.2.0.dev01 – 18.11.2026
 
 - Neu: Auswahl hervorheben als `Sketchup::Overlay` mit transparenter Flächenfüllung und kräftigen Kanten; nur Anzeige, keine Modelländerung.
