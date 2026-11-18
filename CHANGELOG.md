@@ -1,5 +1,9 @@
 # Changelog
 
+## Plugin 0.3.2.dev01 – 18.11.2026
+
+- Objektinfo: Attributscanner und Anzeige lesen jetzt verschachtelte Dictionaries (IFC-PropertySets wie `BASF_General` unter `IFC 4/...`). Pfade werden als `A/B/C` geführt. Nur lesend. Praxistest in SketchUp offen.
+
 ## Plugin 0.3.1.dev01 – 18.11.2026
 
 - Infobox und Optionsdialog zeigen die Plugin-Version.

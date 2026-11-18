@@ -55,10 +55,20 @@ module TD
         end
         # Rein lesend: attribute_dictionary ohne Anlegen-Flag; Instanz hat Vorrang vor Definition.
         def self.attribute(entity, dictionary, key)
-          value = entity.get_attribute(dictionary, key) if entity.respond_to?(:get_attribute)
+          value = nested_attribute(entity, dictionary, key)
           return value unless value.nil?
           definition = definition_of(entity)
-          definition&.get_attribute(dictionary, key)
+          definition && nested_attribute(definition, dictionary, key)
+        end
+        def self.nested_attribute(entity, path, key)
+          return nil unless entity.respond_to?(:attribute_dictionary)
+          names = path.to_s.split('/')
+          node = entity
+          names.each do |name|
+            node = node.attribute_dictionary(name)
+            return nil unless node
+          end
+          node[key]
         end
         def self.ifc_class(entity)
           [entity, definition_of(entity)].compact.each do |source|
@@ -74,7 +84,7 @@ module TD
             value = attribute(entity, dictionary, key)
             empty = value.nil? || value.to_s.strip.empty?
             next if empty && options['hide_empty']
-            [dictionary == 'BASF_General' ? key : "#{dictionary}: #{key}", empty ? nil : value]
+            [dictionary.split('/').last == 'BASF_General' ? key : "#{dictionary}: #{key}", empty ? nil : value]
           end
         end
         def self.lines(path, index, options)

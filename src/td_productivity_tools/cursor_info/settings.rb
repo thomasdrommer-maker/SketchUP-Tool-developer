@@ -3,7 +3,7 @@ require 'json'
 module TD
   module ProductivityTools
     module CursorInfo
-      VERSION = '0.3.1.dev01'.freeze
+      VERSION = '0.3.2.dev01'.freeze
       PREFS = 'TD.ProductivityTools.CursorInfo'.freeze
       FIELDS = {
         'type' => 'Objekttyp', 'name' => 'Instanzname', 'definition' => 'Definitionsname',
