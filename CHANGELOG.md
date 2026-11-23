@@ -1,5 +1,12 @@
 # Changelog
 
+## GFA / BSV Creator 0.1.0.dev01 – 24.11.2026
+
+- Eigenständige Extension mit eigenem Loader, Supportordner, Namensraum, Menü, Toolbar, Datenbereich und RBZ.
+- Ausgerichteter Quader, konvexe 3D-Hülle und numerisch bearbeitbare Grundrisskontur; GFA, Vorschau, Messgruppen und CSV.
+- Prototyp aus cc44107 übernommen; bestehende Produktivitätswerkzeuge unverändert.
+- Entwicklungsauftrag auf v1.1.0 revisioniert; SketchUp-Praxistest offen.
+
 ## Plugin 0.3.3.dev01 – 18.11.2026
 
 - Fix: Start-Fehler (SyntaxError in selection_highlight/settings.rb) durch Sketchup.read_default. Einstellungen liegen jetzt als JSON unter %APPDATA%\TD_ProductivityTools. Gespeicherte Optionen werden dadurch einmalig auf Standard zurückgesetzt.

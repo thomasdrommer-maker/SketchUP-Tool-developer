@@ -2,6 +2,15 @@
 
 Professionelle SketchUp-Desktop-Werkzeuge für effizienteres Modellieren und bessere Orientierung in großen Modellen. Auftraggeber: Tom.
 
+## GFA / BSV Creator – eigenständiges Plugin
+
+Separate Extension für Geschossflächen und geschlossene Gebäude-/Strukturhüllen aus ausgewählten Modellobjekten. Eigener Loader, Menü, Toolbar und RBZ; keine Abhängigkeit von den Produktivitätswerkzeugen.
+
+- [RBZ v0.1.0.dev01](downloads/SU_GFA_BSV_Creator_v0.1.0_dev01.rbz) · [Prüfsumme](downloads/SU_GFA_BSV_Creator_v0.1.0_dev01.rbz.sha256)
+- [Bedienung und Grenzen](docs/GFA_BSV_CREATOR.md) · [Praxistest](docs/acceptance/GFA_BSV_CREATOR_dev01.md)
+- [Entwicklungsauftrag v1.1.0](docs/ENTWICKLUNGSAUFTRAG_GFA_BSV.md) · Quellcode: `plugins/gfa_bsv_creator/`
+- SketchUp Desktop 2026, Ziel Windows 11. **Entwicklungsbuild – SketchUp-Praxistest offen.**
+
 ## Auswahl hervorheben – Entwicklungsbuild 0.2.0.dev01
 
 Auf dem Branch `feature/selection-highlight-dev01`: ausgewählte Objekte werden mit halbtransparenter Fläche und kräftigen Kanten hervorgehoben (SketchUp-Overlay, nur Anzeige).
