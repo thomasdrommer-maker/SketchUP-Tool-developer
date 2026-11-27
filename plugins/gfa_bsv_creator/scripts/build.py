@@ -4,11 +4,11 @@ from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 import hashlib
 ROOT = Path(__file__).resolve().parents[1]
 files = sorted(p for p in (ROOT / 'src').rglob('*') if p.is_file())
-output = ROOT.parents[1] / 'downloads' / 'SU_GFA_BSV_Creator_v0.1.0_dev01.rbz'
+output = ROOT.parents[1] / 'downloads' / 'SU_GFA_BSV_Creator_v0.1.0_dev02.rbz'
 output.parent.mkdir(exist_ok=True)
 with ZipFile(output, 'w', compression=ZIP_DEFLATED) as archive:
     for source in files:
-        info = ZipInfo(source.relative_to(ROOT / 'src').as_posix(), (2026, 11, 24, 0, 0, 0))
+        info = ZipInfo(source.relative_to(ROOT / 'src').as_posix(), (2026, 11, 27, 0, 0, 0))
         info.compress_type = ZIP_DEFLATED
         info.external_attr = 0o100644 << 16
         archive.writestr(info, source.read_bytes())

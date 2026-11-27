@@ -1,5 +1,11 @@
 # Changelog
 
+## GFA / BSV Creator 0.1.0.dev02 – 27.11.2026
+
+- Startblockade unter SketchUp 2026 korrigiert: interne Version 26.x statt Jahreszahl 2026 prüfen.
+- Ablehnungsdialog nennt erkannte Version und erwartetes Format; keine Freigabe weiterer Hauptversionen.
+- Startpfad mit simulierten Hostversionen getestet; nativer Praxistest bleibt offen.
+
 ## GFA / BSV Creator 0.1.0.dev01 – 24.11.2026
 
 - Eigenständige Extension mit eigenem Loader, Supportordner, Namensraum, Menü, Toolbar, Datenbereich und RBZ.

@@ -1,6 +1,6 @@
 # GFA / BSV aus Modellobjekten
 
-Version 0.1.0.dev01 | 24.11.2026 | Auftraggeber Tom | Entwicklungsbuild, SketchUp-Praxistest offen
+Version 0.1.0.dev02 | 27.11.2026 | Auftraggeber Tom | Entwicklungsbuild, SketchUp-Praxistest offen
 
 ## Ziel und Lieferumfang
 
@@ -10,7 +10,7 @@ SketchUp bietet nativ Flächen, Volumenkörper und Solid Tools. Dieses Werkzeug 
 
 ## Installation und schneller Ablauf
 
-1. `downloads/SU_GFA_BSV_Creator_v0.1.0_dev01.rbz` herunterladen; im Erweiterungsmanager installieren und SketchUp neu starten.
+1. `downloads/SU_GFA_BSV_Creator_v0.1.0_dev02.rbz` herunterladen; im Erweiterungsmanager installieren und SketchUp neu starten.
 2. Auf Modellebene Gruppen, Komponenten, Flächen oder Kanten auswählen. Ein geöffneter Bearbeitungskontext muss zuvor verlassen werden.
 3. Erweiterungen → GFA / BSV Creator → **GFA / BSV Creator öffnen**; alternativ Toolbar oder Kontextmenü.
 4. **Aktuelle Auswahl übernehmen**. Gebäude und Ebene/Bereich eingeben.
@@ -65,7 +65,7 @@ Die Liste kann nach Name, Gebäude, Ebene oder Messgröße gefiltert werden. Kei
 
 ## Offizielle API-Referenzen
 
-Am 24.11.2026 geprüft: Model (`drawing_element_visible?`, aktive Kontexte, Operationen), Entities (`add_group`, `add_face`), Group (`manifold?`, `volume`, `transformation`), Face (`normal`, `reverse!`, `area`), Tool/View (rein gezeichnete Vorschau), HtmlDialog (Callbacks), SketchupExtension/UI::Command. Besonders relevant: `drawing_element_visible?` hatte vor 2026 einen dokumentierten Fehler bei Gruppen/Komponenten als letztem Pfadelement; deshalb Begrenzung auf 2026.
+Am 27.11.2026 geprüft: Model (`drawing_element_visible?`, aktive Kontexte, Operationen), Entities (`add_group`, `add_face`), Group (`manifold?`, `volume`, `transformation`), Face (`normal`, `reverse!`, `area`), Tool/View (rein gezeichnete Vorschau), HtmlDialog (Callbacks), SketchupExtension/UI::Command. Besonders relevant: `drawing_element_visible?` hatte vor 2026 einen dokumentierten Fehler bei Gruppen/Komponenten als letztem Pfadelement; deshalb Begrenzung auf 2026.
 
 - https://ruby.sketchup.com/Sketchup/Model.html
 - https://ruby.sketchup.com/Sketchup/Entities.html
@@ -81,3 +81,7 @@ Am 24.11.2026 geprüft: Model (`drawing_element_visible?`, aktive Kontexte, Oper
 Nur die neue RBZ installieren. Im Erweiterungsmanager erscheint „GFA / BSV Creator“, unter Ansicht → Symbolleisten eine eigene Toolbar. Installation/Deinstallation ist unabhängig von den Produktivitätswerkzeugen. Vorhandene Messobjekte bleiben beim Deinstallieren als normale SketchUp-Gruppen im Modell erhalten. Messdaten des alten lokalen Sammelprototyps werden nicht automatisch migriert.
 
 Quellen: `plugins/gfa_bsv_creator/src/`; Build: `python plugins/gfa_bsv_creator/scripts/build.py`. Tests: `NODE_PATH=<Ruby-WASI-node_modules> node plugins/gfa_bsv_creator/scripts/check_geometry.cjs`. Loader-/Paketprüfung: `python plugins/gfa_bsv_creator/scripts/check_package.py`. Alle Entwicklungsabhängigkeiten sind ausschließlich für Entwickler.
+
+## Korrektur dev02
+
+Die Versionsprüfung akzeptiert nun die interne SketchUp-Version 26.x für SketchUp 2026; zuvor wurde sie fehlerhaft mit 2026 verglichen. Installieren Sie die neue RBZ über den Erweiterungsmanager über die bestehende Version und starten Sie SketchUp neu. Andere Hauptversionen bleiben gesperrt.

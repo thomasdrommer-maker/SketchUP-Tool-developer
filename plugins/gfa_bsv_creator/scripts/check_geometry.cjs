@@ -23,4 +23,9 @@ vm.eval(fs.readFileSync(root+'/src/td_gfa_bsv_creator/building_metrics/collector
 vm.eval(fs.readFileSync(root+'/test/building_metrics_collector_test.rb','utf8'));
 console.log(vm.eval('BuildingMetricsCollectorTest.instance_variable_get(:@count)').toString()+' collector contract cases passed (doubles, not SketchUp)');
 vm.eval('$stdout.flush; $stderr.flush');
+const {vm: hostVM}=await DefaultRubyVM(wasm);
+const main=fs.readFileSync(root+'/src/td_gfa_bsv_creator/building_metrics/main.rb','utf8').split('\n').filter(line=>!line.startsWith('require_relative ')).join('\n');
+hostVM.eval(main);
+hostVM.eval(fs.readFileSync(root+'/test/host_version_test.rb','utf8'));
+hostVM.eval('$stdout.flush; $stderr.flush');
 })().catch(e=>{console.error(e);process.exitCode=1;});

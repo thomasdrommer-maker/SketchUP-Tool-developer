@@ -1,5 +1,5 @@
 # encoding: UTF-8
-# GFA/BSV geometry | 0.1.0.dev01 | 24.11.2026 | TD für Tom
+# GFA/BSV geometry | 0.1.0.dev02 | 27.11.2026 | TD für Tom
 # Pure calculations in metres; no SketchUp dependency.
 module TD
   module GFABSVCreator

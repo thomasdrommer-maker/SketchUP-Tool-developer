@@ -1,5 +1,5 @@
 # encoding: UTF-8
-# GFA/BSV | 0.1.0.dev01 | 24.11.2026 | TD für Tom
+# GFA/BSV | 0.1.0.dev02 | 27.11.2026 | TD für Tom
 require 'json'
 require 'time'
 require 'csv'
@@ -8,12 +8,16 @@ require_relative 'geometry'
 module TD
   module GFABSVCreator
     module BuildingMetrics
-      VERSION = '0.1.0.dev01'
+      VERSION = '0.1.0.dev02'
       DICT = 'TD_GFA_BSV_Creator'
       module_function
+      # Sketchup.version returns the internal major (26), not the year 2026.
+      def supported_host?(version)
+        /\A26(?:\.\d+)*\z/.match?(version.to_s)
+      end
       def open
-        if Sketchup.version.to_i < 2026
-          UI.messagebox('GFA / BSV dev01 benötigt SketchUp Desktop 2026. Weitere Versionen sind noch nicht freigegeben.')
+        unless supported_host?(Sketchup.version)
+          UI.messagebox("GFA / BSV Creator #{VERSION} unterstützt SketchUp Desktop 2026 (interne Version 26.x).\nErkannte interne Version: #{Sketchup.version}. Andere Hauptversionen sind noch nicht freigegeben.")
           return
         end
         @session.close if @session
