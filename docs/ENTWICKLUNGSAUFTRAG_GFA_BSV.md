@@ -1,10 +1,10 @@
 # Entwicklungsauftrag – GFA- und BSV-Messwerkzeug für SketchUp
 
-Version: **1.0.0**  
-Stand: **23.11.2026**  
-Auftraggeber und fachliche Abnahme: **Tom**  
-Repository: **thomasdrommer-maker/SketchUP-Tool-developer**  
-Zielmodul: **TD::ProductivityTools::BuildingMetrics**  
+Version: **1.1.0**
+Stand: **24.11.2026**
+Auftraggeber und fachliche Abnahme: **Tom**
+Repository: **thomasdrommer-maker/SketchUP-Tool-developer**
+Zielmodul: **TD::GFABSVCreator::BuildingMetrics**
 Status: **Entwicklungsgrundlage zur Prüfung; keine Produktfreigabe**
 
 ## 1. Auftrag und erwarteter Nutzen
@@ -48,11 +48,13 @@ Dort dokumentiert: 15 Geometrie-Regressionsfälle, 15 Vergleiche mit unabhängig
 
 Bei Erstellung dieses Auftrags ist der lokale GFA-/BSV-Code nicht auf dem geprüften Remote-main vorhanden. Dieser Dokumentationsbranch veröffentlicht ausschließlich den Auftrag. Bestehender Code darf erst nach Quellenprüfung, Abgleich mit dem aktuellen main und gesonderter Integration als Repository-Implementierung bezeichnet werden. Insbesondere neuere Änderungen an Objektinfo und Einstellungen dürfen nicht durch den älteren lokalen Stand überschrieben werden.
 
+Der Nutzer hat am 24.11.2026 ausdrücklich eine eigenständige Extension beauftragt. Der Prototyp wird deshalb unter einer eigenen Produktversion **0.1.0.dev01** übernommen; die Versionsfolge der Produktivitätswerkzeuge wird nicht fortgeschrieben.
+
 ## 4. Plattform und Integration
 
 - Primärziel: SketchUp Desktop 2026 unter Windows 11.
 - SketchUp 2025 erst nach eigenem API-/Kompatibilitätsnachweis; Web/iPad sind keine Ruby-Zielplattform.
-- Fachmodul innerhalb der bestehenden TD Produktivitätswerkzeuge; gemeinsame Toolbar und Menüführung. Keine zweite Installation gemeinsamer Laufzeitdateien.
+- Eigenständiges Plugin **GFA / BSV Creator** mit eigenem Extension-Loader, Supportordner, Menü, Toolbar, Versionsfolge und RBZ. Keine Laufzeitabhängigkeit von TD Produktivitätswerkzeugen oder BDM. Quellen unter `plugins/gfa_bsv_creator/`; Loader `td_gfa_bsv_creator.rb`, Supportordner `td_gfa_bsv_creator/`.
 - Vorhandene Objektinfo und Auswahlhervorhebung bleiben funktionsfähig.
 - BDM, IQA und IFC sind klar abgegrenzte spätere Schnittstellen.
 - Offline-Betrieb; keine zusätzliche lokale Python-/Ruby-Installation für Anwender.
@@ -140,7 +142,7 @@ Befehl **Aus Quellen aktualisieren** mit Änderungsvorschau vorsehen. Manuelle K
 
 ## 7. Datenmodell und Schnittstellen
 
-Eigene Metadaten im Dictionary **TD_BuildingMetrics** verwalten. Keine Änderung fremder Dictionaries durch Lesen oder Erzeugen eigener Messobjekte.
+Eigene Metadaten im Dictionary **TD_GFA_BSV_Creator** verwalten. Keine Änderung fremder Dictionaries durch Lesen oder Erzeugen eigener Messobjekte.
 
 | Feldgruppe | Mindestinhalt |
 | --- | --- |
@@ -176,7 +178,7 @@ Leistung mit 10, 100 und 1.000 Instanzen sowie realem Modell dokumentieren: Hard
 
 | Paket | Inhalt | Lieferkriterium |
 | --- | --- | --- |
-| AP1 – Integrationsbasis | Lokalen dev01 prüfen, gegen aktuellen main integrieren; Quader, 3D-Hülle, numerische Kontur, GFA-Prisma, Vorschau und CSV stabilisieren | Installierbarer Entwicklungsbuild, Tests und dokumentierte Grenzen |
+| AP1 – Integrationsbasis | Lokalen dev01 prüfen, gegen aktuellen main als eigenständiges Plugin bereitstellen; Quader, 3D-Hülle, numerische Kontur, GFA-Prisma, Vorschau und CSV stabilisieren | Installierbarer Entwicklungsbuild, Tests und dokumentierte Grenzen |
 | AP2 – Produktive Eingabe | Flächenübernahme, Konturzeichnen/Griffe, punktgestützte Höhen, Öffnungen, Quellenwahl und automatischer Auswahlstatus | Kurzer Modellworkflow, belastbare Rücksprung-/Öffnungsfälle |
 | AP3 – Bauwerksauswertung | Ebenenzuordnung, Flächenvereinigung, Teilvolumenvereinigung, kontrollierte Summen, Aktualisierung aus Quellen | Keine Doppelzählung; Änderungen nachvollziehbar |
 | AP4 – Datenaustausch | BDM-/IQA-Vertrag, geprüfte IFC-Zuordnung, optional XLSX und Normprofile | Nachweis an exportierten Dateien und separater fachlicher Abnahme |
@@ -233,3 +235,4 @@ Vor jeder API-Implementierung die konkret verwendeten Methoden und unterstützte
 | Version | Datum | Änderung |
 | --- | --- | --- |
 | 1.0.0 | 23.11.2026 | Erstfassung aus dem abgestimmten GFA-/BSV-Konzept; zentrale Hüllenfunktion, Ausbaupakete, Datenvertrag und Abnahme festgelegt |
+| 1.1.0 | 24.11.2026 | Nutzerkorrektur: eigenständiger GFA / BSV Creator mit eigenem Loader, Namensraum, UI, Datenbereich und RBZ; AP1 entsprechend angepasst |
