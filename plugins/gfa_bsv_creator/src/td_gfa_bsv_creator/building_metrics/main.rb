@@ -1,5 +1,5 @@
 # encoding: UTF-8
-# GFA/BSV | 0.1.0.dev02 | 27.11.2026 | TD für Tom
+# GFA/BSV | 0.1.0.dev03 | 27.11.2026 | TD für Tom
 require 'json'
 require 'time'
 require 'csv'
@@ -8,7 +8,7 @@ require_relative 'geometry'
 module TD
   module GFABSVCreator
     module BuildingMetrics
-      VERSION = '0.1.0.dev02'
+      VERSION = '0.1.0.dev03'
       DICT = 'TD_GFA_BSV_Creator'
       module_function
       # Sketchup.version returns the internal major (26), not the year 2026.
@@ -28,12 +28,12 @@ module TD
         warn("GFA/BSV: #{error.class}: #{error.message}")
         begin
           File.open(File.join(Dir.tmpdir,'TD_GFA_BSV_Creator.log'),'a') do |file|
-            file.puts("#{Time.now.utc.iso8601} #{VERSION} #{error.class}\n#{Array(error.backtrace).first(8).join("\n")}")
+            file.puts("#{Time.now.utc.iso8601} #{VERSION} #{error.class}: #{error.message}\n#{Array(error.backtrace).first(8).join("\n")}")
           end
         rescue SystemCallError => log_error
           warn("GFA/BSV Protokoll: #{log_error.class}")
         end
-        UI.messagebox(error.is_a?(ArgumentError) ? error.message : "GFA / BSV: #{error.class}. Vorgang abgebrochen. Protokoll: TD_GFA_BSV_Creator.log im temporären Ordner.")
+        UI.messagebox(error.is_a?(ArgumentError) ? error.message : "GFA / BSV: #{error.class}: #{error.message}\nVorgang abgebrochen. Protokoll: TD_GFA_BSV_Creator.log im temporären Ordner.")
       end
       class Session
         def initialize(model)
@@ -155,7 +155,7 @@ module TD
                     elsif kind == 'BSV'
                       group.manifold? ? group.volume.to_f * 0.0254**3 : nil
                     elsif !faces.empty? && faces.all? { |f| f.vertices.all? { |v| (v.position.transform(group.transformation).z - faces.first.vertices.first.position.transform(group.transformation).z).abs < 0.001 } }
-                      faces.sum { |face| face.area(group.transformation) } * 0.0254**2
+                      Geometry.total(faces) { |face| face.area(group.transformation) } * 0.0254**2
                     end
             {id: group.persistent_id,name: group.name,building: group.get_attribute(DICT,'building'),level: group.get_attribute(DICT,'level'),kind: kind,
              unit: kind == 'BSV' ? 'm³' : 'm²',value: value,method: group.get_attribute(DICT,'method'),

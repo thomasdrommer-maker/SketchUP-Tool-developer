@@ -1,5 +1,11 @@
 # Changelog
 
+## GFA / BSV Creator 0.1.0.dev03 – 27.11.2026
+
+- Abhängigkeit von Array#sum entfernt: eigene lokale Summenbildung für Kontur, Volumen und Flächenwerte. Umgeht den gemeldeten Array::Fixnum-Konflikt ohne globale Klassenänderung.
+- Fehlermeldung und Log enthalten jetzt auch die konkrete Fehlerursache.
+- Rechentests laufen mit absichtlich defekter Array#sum-Testsimulation; native SketchUp-Prüfung bleibt offen.
+
 ## GFA / BSV Creator 0.1.0.dev02 – 27.11.2026
 
 - Startblockade unter SketchUp 2026 korrigiert: interne Version 26.x statt Jahreszahl 2026 prüfen.

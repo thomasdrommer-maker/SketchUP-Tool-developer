@@ -1,5 +1,5 @@
 # encoding: UTF-8
-# GFA/BSV geometry | 0.1.0.dev02 | 27.11.2026 | TD für Tom
+# GFA/BSV geometry | 0.1.0.dev03 | 27.11.2026 | TD für Tom
 # Pure calculations in metres; no SketchUp dependency.
 module TD
   module GFABSVCreator
@@ -8,7 +8,14 @@ module TD
         EPS = 1.0e-7
         module_function
         def sub(a, b); a.zip(b).map { |x, y| x - y }; end
-        def dot(a, b); a.zip(b).sum { |x, y| x * y }; end
+        # Avoid Array#sum: legacy extensions can replace Ruby's implementation.
+        # Keep all arithmetic local; never patch Array or restore removed constants.
+        def total(values)
+          result = 0.0
+          values.each { |value| result += yield(value) }
+          result
+        end
+        def dot(a, b); total(a.zip(b)) { |x, y| x * y }; end
         def cross(a, b)
           [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]
         end
@@ -31,7 +38,7 @@ module TD
         end
         def signed_area(p)
           o = p.first
-          p.each_index.sum { |i| turn(o, p[i], p[(i+1)%p.size]) } / 2.0
+          total(p.each_index) { |i| turn(o, p[i], p[(i+1)%p.size]) } / 2.0
         end
         def on_segment(a,b,p)
           turn(a,b,p).abs <= EPS * [norm(sub(b,a)), EPS].max &&
@@ -116,7 +123,7 @@ module TD
           raise ArgumentError, 'Auswahl ist linienförmig.' if norm(normal) < EPS*EPS
           d = p.each_index.max_by { |i| dot(normal,sub(p[i],p[a])).abs }
           raise ArgumentError, 'Auswahl ist eben; kein geschlossenes 3D-Volumen möglich.' if dot(normal,sub(p[d],p[a])).abs / norm(normal) < 0.0001
-          inside = 3.times.map { |k| [a,b,c,d].sum { |i| p[i][k] }/4.0 }
+          inside = 3.times.map { |k| total([a,b,c,d]) { |i| p[i][k] }/4.0 }
           orient = lambda do |f|
             n = cross(sub(p[f[1]],p[f[0]]),sub(p[f[2]],p[f[0]]))
             dot(n,sub(inside,p[f[0]])) > 0 ? f.reverse : f
@@ -150,7 +157,7 @@ module TD
             3.times { |k| counts[[f[k],f[(k+1)%3]].sort] += 1 }
           end
           raise ArgumentError, 'Hülle ist nicht geschlossen.' unless counts.values.all? { |n| n == 2 }
-          volume = faces.sum { |i,j,k| dot(p[i],cross(p[j],p[k])) }/6.0
+          volume = total(faces) { |i,j,k| dot(p[i],cross(p[j],p[k])) }/6.0
           raise ArgumentError, 'Hüllvolumen ist zu klein.' unless volume > 1.0e-9
           {vertices: points.uniq, faces: faces, area: nil, volume: volume}
         end

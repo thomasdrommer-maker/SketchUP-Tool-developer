@@ -1,6 +1,6 @@
 # GFA / BSV aus Modellobjekten
 
-Version 0.1.0.dev02 | 27.11.2026 | Auftraggeber Tom | Entwicklungsbuild, SketchUp-Praxistest offen
+Version 0.1.0.dev03 | 27.11.2026 | Auftraggeber Tom | Entwicklungsbuild, SketchUp-Praxistest offen
 
 ## Ziel und Lieferumfang
 
@@ -10,7 +10,7 @@ SketchUp bietet nativ Flächen, Volumenkörper und Solid Tools. Dieses Werkzeug 
 
 ## Installation und schneller Ablauf
 
-1. `downloads/SU_GFA_BSV_Creator_v0.1.0_dev02.rbz` herunterladen; im Erweiterungsmanager installieren und SketchUp neu starten.
+1. `downloads/SU_GFA_BSV_Creator_v0.1.0_dev03.rbz` herunterladen; im Erweiterungsmanager installieren und SketchUp neu starten.
 2. Auf Modellebene Gruppen, Komponenten, Flächen oder Kanten auswählen. Ein geöffneter Bearbeitungskontext muss zuvor verlassen werden.
 3. Erweiterungen → GFA / BSV Creator → **GFA / BSV Creator öffnen**; alternativ Toolbar oder Kontextmenü.
 4. **Aktuelle Auswahl übernehmen**. Gebäude und Ebene/Bereich eingeben.
@@ -85,3 +85,7 @@ Quellen: `plugins/gfa_bsv_creator/src/`; Build: `python plugins/gfa_bsv_creator/
 ## Korrektur dev02
 
 Die Versionsprüfung akzeptiert nun die interne SketchUp-Version 26.x für SketchUp 2026; zuvor wurde sie fehlerhaft mit 2026 verglichen. Installieren Sie die neue RBZ über den Erweiterungsmanager über die bestehende Version und starten Sie SketchUp neu. Andere Hauptversionen bleiben gesperrt.
+
+## Korrektur dev03
+
+Alle Summen im Plugin werden lokal gebildet. Eine durch ältere Erweiterungen ersetzte Array#sum-Funktion kann so die Messung nicht mehr über den gemeldeten Array::Fixnum-Fehler abbrechen. Die verursachende Erweiterung ist ohne Stacktrace nicht identifiziert. Ruby- oder SketchUp-Kernklassen werden nicht verändert. Fehlerdialog und Protokoll enthalten ab diesem Build die konkrete Fehlermeldung.

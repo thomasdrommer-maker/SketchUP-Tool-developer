@@ -3,7 +3,7 @@ from pathlib import Path
 from zipfile import ZipFile
 import hashlib
 ROOT=Path(__file__).resolve().parents[1]
-p=ROOT.parents[1]/'downloads/SU_GFA_BSV_Creator_v0.1.0_dev02.rbz'
+p=ROOT.parents[1]/'downloads/SU_GFA_BSV_Creator_v0.1.0_dev03.rbz'
 with ZipFile(p) as z:
     assert z.testzip() is None
     assert {n.split('/')[0] for n in z.namelist()} == {'td_gfa_bsv_creator.rb','td_gfa_bsv_creator'}

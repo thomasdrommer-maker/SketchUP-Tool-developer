@@ -32,13 +32,13 @@ module BuildingMetricsGeometryTest
     p = [[0,0],[4,0],[4,1],[1,1],[1,4],[0,4]]
     mesh=G.prism(p,2,5)
     near(mesh[:area],7);near(mesh[:volume],21)
-    signed=mesh[:faces].sum { |a,b,c| G.dot(mesh[:vertices][a],G.cross(mesh[:vertices][b],mesh[:vertices][c])) }/6.0
+    signed=G.total(mesh[:faces]) { |a,b,c| G.dot(mesh[:vertices][a],G.cross(mesh[:vertices][b],mesh[:vertices][c])) }/6.0
     near(signed,21)
     near(G.prism(p.reverse,2,5)[:volume],21)
   end
   check('concave GFA triangulation area') do
     p=G.polygon([[0,0],[5,0],[5,5],[3,5],[3,2],[2,2],[2,5],[0,5]])
-    near(G.triangulate(p).sum { |a,b,c| G.turn(p[a],p[b],p[c])/2.0 },22)
+    near(G.total(G.triangulate(p)) { |a,b,c| G.turn(p[a],p[b],p[c])/2.0 },22)
   end
   check('self-intersection rejected') { rejects { G.polygon([[0,0],[3,3],[0,3],[3,0]]) } }
   check('self-touch rejected') { rejects { G.polygon([[0,0],[4,0],[2,0],[2,3],[0,3]]) } }

@@ -20,7 +20,7 @@ module TD
             face.reverse! if face.normal.dot(expected) < 0
           end
           kind = form.fetch('kind')
-          actual = kind == 'BSV' ? group.volume.to_f * 0.0254**3 : group.entities.grep(Sketchup::Face).sum(&:area) * 0.0254**2
+          actual = kind == 'BSV' ? group.volume.to_f * 0.0254**3 : Geometry.total(group.entities.grep(Sketchup::Face)) { |face| face.area } * 0.0254**2
           if kind == 'BSV'
             raise ArgumentError, 'SketchUp bestätigt die Hülle nicht als geschlossenen Volumenkörper.' unless group.manifold? && actual > 0
           end
